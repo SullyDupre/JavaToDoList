@@ -12,7 +12,7 @@ public class TDList {
 	
 	
 	public int insert(TDElement element){														//return 0 = successful insert, 1 = duplicate description, 2 = duplicate priority
-		
+																								//insert element into the list, checks for duplicates and resorts after finishing insertion
 		int duplicateStatus = checkDuplicate(element);
 		
 		if(duplicateStatus == 1){
@@ -29,17 +29,17 @@ public class TDList {
 		
 	}
 	
-	public TDElement getElement(int index){
+	public TDElement getElement(int index){														//return element by index
 		return toDoList.get(index);
 	}
 	
-	public int getListSize(){
+	public int getListSize(){																	//get the size of the list
 		return toDoList.size();
 	}
 	
 	
 	public int checkDuplicate(TDElement element){													//return 0 = no duplicate, 1 = duplicate description, 2 = duplicate priority
-		for(int el = 0; el < toDoList.size(); el++){
+		for(int el = 0; el < toDoList.size(); el++){												//helper method to check if there is a duplicate descrition or priority
 			TDElement currentCheck = toDoList.get(el);
 			if(element.getDescription().equals(currentCheck.getDescription())){
 				return 1;
@@ -51,8 +51,8 @@ public class TDList {
 		return 0;
 	}
 	
-	public void printList(){
-		for(int el = 0; el < toDoList.size(); el++){
+	public void printList(){																		//debugging method to print list
+		for(int el = 0; el < toDoList.size(); el++){	
 			TDElement current = toDoList.get(el);
 			System.out.print("Description: " + current.getDescription() + "  " + "Priority: " + current.getPriority() + "   " + "Due Date: " + current.getDueDate() + "   " + "Status   " + current.getStatus());
 			System.out.println();
@@ -60,7 +60,7 @@ public class TDList {
 	}
 	
 	
-	private void sortByCurrentMethod(){
+	private void sortByCurrentMethod(){															//sorts the list by the currently selected method
 		if(currentSortMethod == 0){
 			sortByPriority();
 		}
@@ -72,17 +72,17 @@ public class TDList {
 		}
 	}
 	
-	public void sortByDescription(){
+	public void sortByDescription(){														//sort list by description, lexicographically 
 		Collections.sort(toDoList, new DescriptionComparator());
 		currentSortMethod = 1;
 	}
 	
-	public void sortByPriority(){
+	public void sortByPriority(){														//sort list by priority, numerically
 		Collections.sort(toDoList, new PriorityComparator());
 		currentSortMethod = 0;
 	}
 	
-	public void sortByDueDate(){
+	public void sortByDueDate(){														//sort list by due date
 		Collections.sort(toDoList, new DateComparator());
 		currentSortMethod = 2;
 	}
@@ -90,6 +90,10 @@ public class TDList {
 	
 }
 
+
+
+
+//comparator classes for sorting purposes
 
 class DescriptionComparator implements Comparator<TDElement> {
 	@Override
