@@ -9,15 +9,34 @@ public class FormPanel extends JPanel implements ActionListener {
 	private JLabel label;
 	private StringListener textListener;
 	
+	private JLabel sort1;
+	
+	private JComboBox sortCombo;
+	
 	public FormPanel()
 	{
 		//set the sort by scroll down
 		setBorder(BorderFactory.createEtchedBorder());
 		sort = new JButton ("Sort By:");
 		sort.addActionListener(this);
+		
+		sort1 = new JLabel ("Sort by:"); 
+		
+		sortCombo = new JComboBox ();
+		DefaultComboBoxModel sortModel = new DefaultComboBoxModel();
+		sortModel.addElement("Description");
+		sortModel.addElement("Due Date");
+		sortModel.addElement("Priority");
+		sortCombo.setModel(sortModel);
+		
+		
 		JPanel panel1 = new JPanel();
 		panel1.setLayout(new FlowLayout());
 		panel1.add(sort);
+		
+		//added label and drop down list
+		panel1.add(sort1);
+		panel1.add(sortCombo);
 		
 		//set the label
 		label = new JLabel ("To Do List");
