@@ -1,96 +1,62 @@
 package cse360ToDoList;
-import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.border.Border;
-
-public class FormPanel extends JPanel {
+public class FormPanel extends JPanel implements ActionListener {
 	
-	private JLabel nameLabel;
-	private JLabel occupationLabel;
-	private JTextField nameField;
-	private JTextField occupationField;
-	private JButton okBtn;
+	private JButton sort;
+	private JLabel label;
+	private StringListener textListener;
+	
+	//Label for drop down list
+	private JLabel sort1;
+	
+	//Drop Down List
+	private JComboBox sortCombo;
 	
 	public FormPanel()
 	{
-		Dimension dim = getPreferredSize();
-		//System.out.print(dim + "\n");
-		dim.width = 250;
-		setPreferredSize(dim);
-		//System.out.print(dim+ "\n");
+		//set the sort by scroll down
+		setBorder(BorderFactory.createEtchedBorder());
+		sort = new JButton ("Sort By:");
+		sort.addActionListener(this);
 		
-		nameLabel = new JLabel("Name: ");
-		occupationLabel = new JLabel("Occupation: ");
-		nameField = new JTextField(10);
-		occupationField = new JTextField(10);
+		sort1 = new JLabel ("Sort by:"); 
 		
-		okBtn = new JButton ("OK");
-			
-		Border innerBorder = BorderFactory.createTitledBorder("Add Person");
-		Border outerBorder = BorderFactory.createEmptyBorder(5, 5, 5, 5);
-		setBorder(BorderFactory.createCompoundBorder(outerBorder, innerBorder));
-		
-		setLayout(new GridBagLayout());
-		
-		GridBagConstraints gc = new GridBagConstraints();
+		sortCombo = new JComboBox ();
+		DefaultComboBoxModel sortModel = new DefaultComboBoxModel();
+		sortModel.addElement("Description");
+		sortModel.addElement("Due Date");
+		sortModel.addElement("Priority");
+		sortCombo.setModel(sortModel);
 		
 		
+		JPanel panel1 = new JPanel();
+		panel1.setLayout(new FlowLayout());
+		panel1.add(sort);
+		
+		//added label and drop down list
+		panel1.add(sort1);
+		panel1.add(sortCombo);
+		
+		//set the label
+		label = new JLabel ("To Do List");
+		label.setFont(new Font("Time New Roman", Font.BOLD, 20));
+		JPanel panel2 = new JPanel();
+		panel2.setLayout(new FlowLayout());
+		panel2.add(label);
+		
+		setLayout(new GridLayout(2,1));
+		add(panel2);
+		add(panel1);
 		
 		
-		///////First Row ///////////
-		
-		gc.weightx = 1;
-		gc.weighty = 0.1;
-		
-		gc.gridx = 0;
-		gc.gridy = 0;
-		
-		gc.fill = GridBagConstraints.NONE;
-		gc.anchor = GridBagConstraints.LINE_END;
-		gc.insets = new Insets(0, 0, 0, 5);
-		add(nameLabel, gc);
-		
-		gc.gridx = 1;
-		gc.gridy = 0;
-		gc.insets = new Insets(0, 0, 0, 0);
-		gc.anchor = GridBagConstraints.LINE_START;
-		add(nameField, gc);
-		
-		///////Second Row ///////////
-		
-		gc.weightx = 1;
-		gc.weighty = 0.1;
-		
-		gc.gridy = 1;
-		gc.gridx = 0;
-		gc.insets = new Insets(0, 0, 0, 5);
-		gc.anchor = GridBagConstraints.LINE_END;
-		add(occupationLabel, gc);
-		
-		gc.gridx = 1;
-		gc.gridy = 1;
-		gc.insets = new Insets(0, 0, 0, 0);
-		gc.anchor = GridBagConstraints.LINE_START;
-		add(occupationField, gc);
-		
-		///////Third Row ////////////
-		
-		gc.weightx = 1;
-		gc.weighty = 2.0;
-		
-		gc.gridy = 2;
-		gc.gridx = 1;
-		gc.anchor = GridBagConstraints.FIRST_LINE_START;
-		gc.insets = new Insets(0, 0, 0, 0);
-		add(okBtn, gc);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 }
