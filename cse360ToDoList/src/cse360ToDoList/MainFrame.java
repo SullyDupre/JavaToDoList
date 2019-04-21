@@ -26,17 +26,10 @@ public class MainFrame extends JFrame{
 		textPanel = new TextPanel();
 		formPanel = new FormPanel();
 		
-		toolbar.setStringListener(new StringListener () {
-			public void textEmitted(String text) {
-				textPanel.appendText(text);
-				
-			}
-			
-		});
 		//
 		
-		add(formPanel, BorderLayout.WEST);
-		add(toolbar, BorderLayout.NORTH);
+		add(formPanel, BorderLayout.NORTH);
+		add(toolbar, BorderLayout.SOUTH);
 		add(textPanel, BorderLayout.CENTER);
 		//add(btn, BorderLayout.SOUTH);
 		
