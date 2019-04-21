@@ -81,7 +81,7 @@ public class FormPanel extends JPanel {
 		gc.anchor = GridBagConstraints.LINE_START;
 		add(occupationField, gc);
 		
-		///////Third Row ///////////
+		///////Third Row ////////////
 		
 		gc.weightx = 1;
 		gc.weighty = 2.0;

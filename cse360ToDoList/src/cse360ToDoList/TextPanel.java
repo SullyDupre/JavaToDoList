@@ -21,3 +21,4 @@ public class TextPanel extends JPanel {
 		textArea.append(text);
 	}
 }
+//
