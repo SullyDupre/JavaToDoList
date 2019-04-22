@@ -13,9 +13,7 @@ public class MainFrame extends JFrame{
 	private TextPanel textPanel;
 	//private JButton btn;
 	private Toolbar toolbar;
-	
 	private FormPanel formPanel;
-	
 	public MainFrame()
 	{
 		super("CSE360Testing Main Frame");
@@ -26,7 +24,7 @@ public class MainFrame extends JFrame{
 		textPanel = new TextPanel();
 		formPanel = new FormPanel();
 		
-		//
+		
 		
 		add(formPanel, BorderLayout.NORTH);
 		add(toolbar, BorderLayout.SOUTH);
