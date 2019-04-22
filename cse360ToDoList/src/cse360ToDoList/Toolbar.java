@@ -61,12 +61,12 @@ public class Toolbar extends JPanel implements ActionListener{
 			JLabel dateFinishedLabel = new JLabel("Date Finished");
 			
 			//text fields
-			JTextField descriptionField = new JTextField("");
-			JTextField dueDateField = new JTextField("");
-			JTextField priorityField = new JTextField("");
-			JTextField statusField = new JTextField("");
-			JTextField dateStartedField = new JTextField("");
-			JTextField dateFinishedField = new JTextField("");
+			JTextField descriptionField = new JTextField(20);
+			JTextField dueDateField = new JTextField(20);
+			JTextField priorityField = new JTextField(20);
+			JTextField statusField = new JTextField(20);
+			JTextField dateStartedField = new JTextField(20);
+			JTextField dateFinishedField = new JTextField(20);
 			
 			//left panel
 			JPanel leftPanel = new JPanel();
