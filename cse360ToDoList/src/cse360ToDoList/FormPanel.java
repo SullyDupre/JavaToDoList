@@ -28,7 +28,7 @@ public class FormPanel extends JPanel implements ActionListener {
 		DefaultComboBoxModel sortModel = new DefaultComboBoxModel();
 		sortModel.addElement("Description");
 		sortModel.addElement("Due Date");
-		sortModel.addElement("Priority");//
+		sortModel.addElement("Priority");
 		sortCombo.setModel(sortModel);
 		
 		
