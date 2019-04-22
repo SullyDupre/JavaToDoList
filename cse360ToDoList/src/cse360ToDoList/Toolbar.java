@@ -1,3 +1,8 @@
+ /**
+  *  Description: This class creates an layout for the bottom tool bar 
+  *  			and invoke the events and call methods 
+  *  			when a button on the tool bar is clicked
+ */ 
 package cse360ToDoList;
 import java.awt.*;
 import java.awt.event.*;
@@ -10,6 +15,9 @@ public class Toolbar extends JPanel implements ActionListener{
 	private JButton restoreButton;
 	private JButton printButton;
 	
+	/** 
+	 * This constructor: create the general layout for the bottom tool bar 
+	 */
 	public Toolbar()
 	{
 		//create buttons
@@ -32,7 +40,10 @@ public class Toolbar extends JPanel implements ActionListener{
 		
 	}
 
-	
+	/** 
+	 * This method call the appropriate methods when a button is clicked
+	 * @param take in an clicked event
+	 */
 	public void actionPerformed(ActionEvent e) {
 		JButton clicked = (JButton)e.getSource();
 		
@@ -98,6 +109,20 @@ public class Toolbar extends JPanel implements ActionListener{
 				System.out.println(descriptionField.getText());
 				
 			}
+			
+		}
+		
+		//save button click
+		if (clicked == addButton) {
+			
+		}
+		
+		//restore button click
+		if (clicked == restoreButton) {
+		}
+		
+		//print 
+		if (clicked == printButton) {
 			
 		}
 		
