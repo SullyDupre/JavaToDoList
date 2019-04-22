@@ -60,7 +60,7 @@ public class Toolbar extends JPanel implements ActionListener{
 			JLabel dateStartedLabel = new JLabel("Date Started");
 			JLabel dateFinishedLabel = new JLabel("Date Finished");
 			
-			//text fields
+			//text fields with 20 characters in each each
 			JTextField descriptionField = new JTextField(20);
 			JTextField dueDateField = new JTextField(20);
 			JTextField priorityField = new JTextField(20);
