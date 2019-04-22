@@ -7,9 +7,9 @@ package cse360ToDoList;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import java.util.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+//import java.util.Date;
+//import java.text.ParseException;
+//import java.text.SimpleDateFormat;
 
 
 public class Toolbar extends JPanel implements ActionListener{
@@ -185,5 +185,9 @@ public class Toolbar extends JPanel implements ActionListener{
 		}
 		
 	}
+	
+	public void setTDListener(TDListener listener) {
+		this.TDListener = listener;
+	} 
 }
 //

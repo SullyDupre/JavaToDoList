@@ -15,6 +15,8 @@ public class TextPanel extends JPanel implements ActionListener {
 	private JList list;
 	private JButton editButton;
 	private JButton deleteButton;
+	private int count = 0;
+	String[] listItems = new String [count];
 	
 	/**
 	 * constructor: create an area that display all of the to do 
@@ -22,9 +24,8 @@ public class TextPanel extends JPanel implements ActionListener {
 	 */
 	public TextPanel() {
 		//create an array of string that contains all the info
-		int count = 5;
-		String[] listItems = new String[count];
-		for (int index = 0; index < count; index++)
+;
+		for (int index = 0; index < 5; index++)
 		{
 			/*
 			listItems[index] = "<html>Description: " + "<br/>"
@@ -76,6 +77,11 @@ public class TextPanel extends JPanel implements ActionListener {
 		{
 		}
 		
+	}
+	
+	public void addItem(String text, int index)
+	{
+		listItems[index] = text;
 	}
 	
 
