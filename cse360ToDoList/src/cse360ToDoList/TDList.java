@@ -29,17 +29,47 @@ public class TDList {
 		
 	}
 	
+	public void remove(int index){													//remove an element from the sorted list by array index
+		toDoList.remove(index);
+	}
+	
+	public void remove(TDElement element){											//remove an element from the sorted list by object
+		toDoList.remove(element);
+	}
+	
+	
 	public TDElement getElement(int index){														//return element by index
 		return toDoList.get(index);
 	}
+	
+	public ArrayList<TDElement> getEntireList(){													//return entire sorted list
+		sortByCurrentMethod();
+		return toDoList;
+	}
+	
 	
 	public int getListSize(){																	//get the size of the list
 		return toDoList.size();
 	}
 	
+	public int update(TDElement element, int index){									//update element given an element and an index to update. Returns 0 for success, 1 for duplicate description, 2 for duplicate priority
+		int test = checkDuplicate(element);
+		if(test == 1){
+			return 1;
+		}
+		else if(test == 2){
+			return 2;
+		}
+		else{
+			remove(index);
+			insert(element);
+			return 0;
+		}
+	}
+	
 	
 	public int checkDuplicate(TDElement element){													//return 0 = no duplicate, 1 = duplicate description, 2 = duplicate priority
-		for(int el = 0; el < toDoList.size(); el++){												//helper method to check if there is a duplicate descrition or priority
+		for(int el = 0; el < toDoList.size(); el++){												//helper method to check if there is a duplicate description or priority
 			TDElement currentCheck = toDoList.get(el);
 			if(element.getDescription().equals(currentCheck.getDescription())){
 				return 1;
