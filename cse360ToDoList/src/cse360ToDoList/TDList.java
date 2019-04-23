@@ -7,9 +7,15 @@ import java.nio.file.StandardOpenOption.*;
 import java.util.*;
 
 public class TDList {
-	
+	/**
+	 * The array list that will dynamically store the contents of the ToDoList
+	 */
 	public ArrayList<TDElement> toDoList;
-	public int currentSortMethod = 0;													//currentSortMethod = 0 for sortByPriority, csm = 1 for sortbydescription, csm = 2 for sortbydate
+	/**
+	 * 
+	 * currentSortMethod = 0 for sortByPriority, csm = 1 for sortbydescription, csm = 2 for sortbydate
+	 */
+	public int currentSortMethod = 0;													
 	
 	public TDList(){
 		toDoList = new ArrayList<TDElement>();
