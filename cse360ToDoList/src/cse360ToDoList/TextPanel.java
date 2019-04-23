@@ -23,6 +23,8 @@ public class TextPanel extends JPanel {
 	private JComboBox jmonthstartdate;
 	private JComboBox jmonthfinishdate;
 	
+	JOptionPane pane;
+	
 	private JComboBox jstat;
 	/**
 	 * constructor: create an area that display all of the to do 
@@ -223,7 +225,18 @@ public class TextPanel extends JPanel {
 					String FinishDate = jmonthfinishdate.getSelectedItem() + " " + dateFinishedDay.getText();
 					
 					TDElement element = new TDElement(des, priority, date, status, StartDate, FinishDate);
-					list.insert(element);
+					int check = list.insert(element);
+					
+					if (check == 1)
+					{
+						pane = new JOptionPane();
+						pane.showMessageDialog(null, "Error, Duplicate Description");
+					}
+					else if (check == 2)
+					{
+						pane = new JOptionPane();
+						pane.showMessageDialog(null, "Error, Duplicate Priority");
+					}
 					
 					listItems.clear();
 //					//temp
