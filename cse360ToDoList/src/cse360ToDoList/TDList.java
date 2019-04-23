@@ -148,9 +148,47 @@ class PriorityComparator implements Comparator<TDElement> {
 }
 
 class DateComparator implements Comparator<TDElement> {
-	@Override
+	String[] months = new String[]{"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+
+	@Override	
 	public int compare(TDElement first, TDElement second){
-		return second.getDueDate().compareTo(first.getDueDate());
+		String[] splitFirst = first.getDueDate().split("\\s+");
+		String[] splitSecond = second.getDueDate().split("\\s+");
+
+		int firstMonthIndex = -1;
+		int secondMonthIndex = -1;
+		
+		for(int firstMonth = 0; firstMonth < months.length; firstMonth++){
+			if(months[firstMonth].equals(splitFirst[0])){
+				firstMonthIndex = firstMonth;
+			}
+		}
+		
+		for(int secondMonth = 0; secondMonth < months.length; secondMonth++){
+			if(months[secondMonth].equals(splitSecond[0])){
+				secondMonthIndex = secondMonth;
+			}
+		}
+		
+		if(firstMonthIndex < secondMonthIndex){
+			return -1;
+		}
+		else if(secondMonthIndex < firstMonthIndex){
+			return 1;
+		}
+		else{
+			int day1 = Integer.parseInt(splitFirst[1]);
+			int day2 = Integer.parseInt(splitSecond[1]);
+			if(day1 < day2){
+				return -1;
+			}
+			else if(day2 < day1){
+				return 1;
+			}
+			else{
+				return 0;
+			}
+		}
 	}
 }
 
