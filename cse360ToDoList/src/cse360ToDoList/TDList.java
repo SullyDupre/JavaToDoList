@@ -12,19 +12,27 @@ public class TDList {
 	 */
 	public ArrayList<TDElement> toDoList;
 	/**
-	 * 
+	 * The integer that will be used for sorting purposes.
 	 * currentSortMethod = 0 for sortByPriority, csm = 1 for sortbydescription, csm = 2 for sortbydate
 	 */
 	public int currentSortMethod = 0;													
 	
+	/**
+	 * The constructor for the array that stores the contents of the ToDoList
+	 */
 	public TDList(){
 		toDoList = new ArrayList<TDElement>();
 	}
 	
 	
-	public int insert(TDElement element){														//return 0 = successful insert, 1 = duplicate description, 2 = duplicate priority
-																								//insert element into the list, checks for duplicates and resorts after finishing insertion
-		int duplicateStatus = checkDuplicate(element);
+	/**
+	 * This is the insert function that will be used to insert elements into the list of ToDo items
+	 * @return 0 = successful insert, 1 = duplicate description, 2 = duplicate priority
+	 * 
+	 */
+	public int insert(TDElement element){	
+											
+		int duplicateStatus = checkDuplicate(element);	//insert element into the list, checks for duplicates and resorts after finishing insertion
 		
 		if(duplicateStatus == 1){
 			return 1;
@@ -40,30 +48,49 @@ public class TDList {
 		
 	}
 	
-	public void remove(int index){													//remove an element from the sorted list by array index
+	/**
+	 * This function removes an element from the sorted list by array index.
+	 */
+	public void remove(int index){													
 		toDoList.remove(index);
 	}
 	
-	public void remove(TDElement element){											//remove an element from the sorted list by object
+	/**
+	 * This function removes an element from the sorted list by object
+	 */
+	
+	public void remove(TDElement element){											
 		toDoList.remove(element);
 	}
 	
-	
-	public TDElement getElement(int index){														//return element by index
+	/**
+	 * This function returns an element by index 
+	 */
+	public TDElement getElement(int index){														
 		return toDoList.get(index);
 	}
 	
-	public ArrayList<TDElement> getEntireList(){													//return entire sorted list
+	/**
+	 * This function is a helper function that will return an entire sorted list
+	 */
+	public ArrayList<TDElement> getEntireList(){													
 		sortByCurrentMethod();
 		return toDoList;
 	}
 	
-	
+	/**
+	 * This function gets the size of the list.
+	 */
 	public int getListSize(){																	//get the size of the list
 		return toDoList.size();
 	}
 	
-	public int update(TDElement element, int index){									//update element given an element and an index to update. Returns 0 for success, 1 for duplicate description, 2 for duplicate priority
+	/**
+	 * This function updates the element given that the element and an index are given (in order to update)
+	 * @param element and index
+	 * @return 0 for success, 1 for duplicate description, 2 for duplicate priority
+	 */
+	public int update(TDElement element, int index){									
 		int test = checkDuplicate(element);
 		if(test == 1){
 			return 1;
@@ -78,9 +105,12 @@ public class TDList {
 		}
 	}
 	
-	
-	public int checkDuplicate(TDElement element){													//return 0 = no duplicate, 1 = duplicate description, 2 = duplicate priority
-		for(int el = 0; el < toDoList.size(); el++){												//helper method to check if there is a duplicate description or priority
+	/**
+	 * This function checks the array list to see if there is a duplicate description or priority.
+	 * @return 0 = no duplicate, 1 = duplicate description, 2 = duplicate priority
+	 */
+	public int checkDuplicate(TDElement element){													
+		for(int el = 0; el < toDoList.size(); el++){												
 			TDElement currentCheck = toDoList.get(el);
 			if(element.getDescription().equals(currentCheck.getDescription())){
 				return 1;
@@ -92,7 +122,10 @@ public class TDList {
 		return 0;
 	}
 	
-	public void printList(){																		//debugging method to print list
+	/**
+	 * Function used to print the list of contents.
+	 */
+	public void printList(){																		
 		for(int el = 0; el < toDoList.size(); el++){	
 			TDElement current = toDoList.get(el);
 			System.out.print("Description: " + current.getDescription() + "  " + "Priority: " + current.getPriority() + "   " + "Due Date: " + current.getDueDate() + "   " + "Status   " + current.getStatus());
@@ -100,7 +133,9 @@ public class TDList {
 		}
 	}
 	
-	
+	/**
+	 * This function sorts the list by the currently selected method
+	 */
 	private void sortByCurrentMethod(){															//sorts the list by the currently selected method
 		if(currentSortMethod == 0){
 			sortByPriority();
