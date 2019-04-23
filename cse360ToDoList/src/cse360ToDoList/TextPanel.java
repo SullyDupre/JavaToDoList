@@ -19,7 +19,10 @@ public class TextPanel extends JPanel {
 	private JButton addButton;
 	private Vector listItems;
 	
-	private JComboBox jdate;
+	private JComboBox jduedate;
+	private JComboBox jstartdate;
+	private JComboBox jfinishdate;
+	
 	private JComboBox jstat;
 	/**
 	 * constructor: create an area that display all of the to do 
@@ -126,7 +129,7 @@ public class TextPanel extends JPanel {
 				rightPanel.add(descriptionField);
 
 				//drop down menu for the months
-				jdate = new JComboBox();
+				jduedate = new JComboBox();
 				DefaultComboBoxModel jmonth = new DefaultComboBoxModel();
 				jmonth.addElement("January");
 				jmonth.addElement("February");
@@ -140,7 +143,7 @@ public class TextPanel extends JPanel {
 				jmonth.addElement("October");
 				jmonth.addElement("November");
 				jmonth.addElement("December");
-				jdate.setModel(jmonth);
+				jduedate.setModel(jmonth);
 				
 				//drop down menu for status bar
 				jstat = new JComboBox();
@@ -151,20 +154,48 @@ public class TextPanel extends JPanel {
 				jstat.setModel(jstatusOpt);
 				
 				JPanel dueDate = new JPanel();
+				JPanel startDate = new JPanel();
+				JPanel finishDate = new JPanel();
+				
 				dueDate.setLayout(new FlowLayout());
-				JTextField dueDateMonth = new JTextField(7);
+				startDate.setLayout(new FlowLayout());
+				finishDate.setLayout(new FlowLayout());
+				
+				//JTextField dueDateMonth = new JTextField(7);
 				JTextField dueDateDay = new JTextField(7);
+				
+				
+				
+				
+				//declare start date combo box
+				jstartdate = new JComboBox();
+				JTextField dateStartedDay = new JTextField(7);
+				jstartdate.setModel(jmonth);
+				
+				//declare finish date combo box
+				jfinishdate = new JComboBox();
+				jfinishdate.setModel(jmonth);
+				JTextField dateFinishedDay = new JTextField(7);
+				
+				//add due date
 				rightPanel.add(dueDate);
-				
-				
-				
-				
-				dueDate.add(jdate);
+				dueDate.add(jduedate);
 				dueDate.add(dueDateDay);
+				
+				//add status
 				rightPanel.add(priorityField);
 				rightPanel.add(jstat);
-				rightPanel.add(dateStartedField);
-				rightPanel.add(dateFinishedField);
+				
+				//add start date
+				rightPanel.add(startDate);
+				startDate.add(jstartdate);
+				startDate.add(dateStartedDay);
+				
+				//add finish date
+				rightPanel.add(finishDate);
+				finishDate.add(jfinishdate);
+				finishDate.add(dateFinishedDay);
+				
 				
 				//top panel
 				JPanel topPanel = new JPanel();
@@ -186,7 +217,7 @@ public class TextPanel extends JPanel {
 				if (result == JOptionPane.OK_OPTION) {
 					String des = descriptionField.getText();
 					int priority = Integer.parseInt(priorityField.getText());
-					String date = jdate.getSelectedItem() + " " + dueDateDay.getText();
+					String date = jduedate.getSelectedItem() + " " + dueDateDay.getText();
 					String status = (String) jstat.getSelectedItem();
 					TDElement element = new TDElement(des, priority, date, status);
 					list.insert(element);
