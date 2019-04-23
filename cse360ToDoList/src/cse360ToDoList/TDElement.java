@@ -20,10 +20,10 @@ public class TDElement {
 		description = descrip;
 		priority = prio;
 		dueDate = due;
-		if (stat == "Not Started"){
+		if (stat.equals("Not Started")){
 			status = 0;
 		}
-		else if (stat == "In Progress"){
+		else if (stat.equals("In Progress")){
 			status = 1;
 		}
 		else {
@@ -35,10 +35,10 @@ public class TDElement {
 		description = descrip;
 		priority = prio;
 		dueDate = due;
-		if (stat == "Not Started"){
+		if (stat.equals("Not Started")){
 			status = 0;
 		}
-		else if (stat == "In Progress"){
+		else if (stat.equals("In Progress")){
 			status = 1;
 		}
 		else {
@@ -51,10 +51,10 @@ public class TDElement {
 		description = descrip;
 		priority = prio;
 		dueDate = due;
-		if (stat == "Not Started"){
+		if (stat.equals("Not Started")){
 			status = 0;
 		}
-		else if (stat == "In Progress"){
+		else if (stat.equals("In Progress")){
 			status = 1;
 		}
 		else {
@@ -111,10 +111,10 @@ public class TDElement {
 	}
 
 	public void setStatus(String newStat){
-		if (newStat == "Not Started"){
+		if (newStat.equals("Not Started")){
 			status = 0;
 		}
-		else if (newStat == "In Progress"){
+		else if (newStat.equals("In Progress")){
 			status = 1;
 		}
 		else {
