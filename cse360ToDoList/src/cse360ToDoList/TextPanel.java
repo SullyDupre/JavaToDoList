@@ -218,41 +218,48 @@ public class TextPanel extends JPanel {
 				//add to list here
 				if (result == JOptionPane.OK_OPTION) {
 					String des = descriptionField.getText();
-					int priority = Integer.parseInt(priorityField.getText());
-					String date = jmonthduedate.getSelectedItem() + " " + dueDateDay.getText();
-					String status = (String) jstat.getSelectedItem();
-					String StartDate = jmonthstartdate.getSelectedItem() + " " + dateStartedDay.getText();
-					String FinishDate = jmonthfinishdate.getSelectedItem() + " " + dateFinishedDay.getText();
-					
-					TDElement element = new TDElement(des, priority, date, status, StartDate, FinishDate);
-					int check = list.insert(element);
-					
-					if (check == 1)
-					{
-						pane = new JOptionPane();
-						pane.showMessageDialog(null, "Error, Duplicate Description");
+					try {
+						int priority = Integer.parseInt(priorityField.getText());
+			
+						String date = jmonthduedate.getSelectedItem() + " " + dueDateDay.getText();
+						String status = (String) jstat.getSelectedItem();
+						String StartDate = jmonthstartdate.getSelectedItem() + " " + dateStartedDay.getText();
+						String FinishDate = jmonthfinishdate.getSelectedItem() + " " + dateFinishedDay.getText();
+						
+						TDElement element = new TDElement(des, priority, date, status, StartDate, FinishDate);
+						int check = list.insert(element);
+						
+						if (check == 1)
+						{
+							pane = new JOptionPane();
+							pane.showMessageDialog(null, "Error, Duplicate Description");
+						}
+						else if (check == 2)
+						{
+							pane = new JOptionPane();
+							pane.showMessageDialog(null, "Error, Duplicate Priority");
+						}
+						
+						listItems.clear();
+	//					//temp
+						for (int index = 0; index < list.getListSize(); index++)
+						{
+							TDElement element1 = list.getElement(index);
+							String ele = "<html>Description: " + element1.getDescription() + "<br/>"
+									+ "Due Date: " + element1.getDueDate() + "<br/>" 
+									+ "Priority: "+ element1.getPriority() + "<br/>" 
+									+ "Status: "+ element1.getStatus() + "<br/>" 
+									+ "Date Started: " + element1.getDateStarted() +"<br/>" 
+									+ "Date Finished: " + element1.getDateFinished() +  "<br/>" 
+									+ "--------------------------------------------------------</html>"; 
+							 listItems.add(ele);
+						}
+						jlist.updateUI();
+					} catch (NumberFormatException exception) {
+						JOptionPane pane = new JOptionPane();
+						pane.showMessageDialog(null, "Error: Priority is not an integer");
 					}
-					else if (check == 2)
-					{
-						pane = new JOptionPane();
-						pane.showMessageDialog(null, "Error, Duplicate Priority");
-					}
 					
-					listItems.clear();
-//					//temp
-					for (int index = 0; index < list.getListSize(); index++)
-					{
-						TDElement element1 = list.getElement(index);
-						String ele = "<html>Description: " + element1.getDescription() + "<br/>"
-								+ "Due Date: " + element1.getDueDate() + "<br/>" 
-								+ "Priority: "+ element1.getPriority() + "<br/>" 
-								+ "Status: "+ element1.getStatus() + "<br/>" 
-								+ "Date Started: " + element1.getDateStarted() +"<br/>" 
-								+ "Date Finished: " + element1.getDateFinished() +  "<br/>" 
-								+ "--------------------------------------------------------</html>"; 
-						 listItems.add(ele);
-					}
-					jlist.updateUI();
 				}
 				
 			}
@@ -413,30 +420,35 @@ public class TextPanel extends JPanel {
 					//add to list here
 					if (result == JOptionPane.OK_OPTION) {
 						String des = descriptionField.getText();
-						int priority = Integer.parseInt(priorityField.getText());
-						String date = jmonthduedate.getSelectedItem() + " " + dueDateDay.getText();
-						String status = (String) jstat.getSelectedItem();
-						String StartDate = jmonthstartdate.getSelectedItem() + " " + dateStartedDay.getText();
-						String FinishDate = jmonthfinishdate.getSelectedItem() + " " + dateFinishedDay.getText();
-						
-						TDElement element = new TDElement(des, priority, date, status, StartDate, FinishDate);
-						list.update(element, jlist.getSelectedIndex());
-						
-						listItems.clear();
-	
-						for (int index = 0; index < list.getListSize(); index++)
-						{
-							TDElement element1 = list.getElement(index);
-							String ele = "<html>Description: " + element1.getDescription() + "<br/>"
-									+ "Due Date: " + element1.getDueDate() + "<br/>" 
-									+ "Priority: "+ element1.getPriority() + "<br/>" 
-									+ "Status: "+ element1.getStatus() + "<br/>" 
-									+ "Date Started: " + element1.getDateStarted() +"<br/>" 
-									+ "Date Finished: " + element1.getDateFinished() +  "<br/>" 
-									+ "--------------------------------------------------------</html>"; 
-							 listItems.add(ele);
+						try {
+							int priority = Integer.parseInt(priorityField.getText());
+							String date = jmonthduedate.getSelectedItem() + " " + dueDateDay.getText();
+							String status = (String) jstat.getSelectedItem();
+							String StartDate = jmonthstartdate.getSelectedItem() + " " + dateStartedDay.getText();
+							String FinishDate = jmonthfinishdate.getSelectedItem() + " " + dateFinishedDay.getText();
+							
+							TDElement element = new TDElement(des, priority, date, status, StartDate, FinishDate);
+							list.update(element, jlist.getSelectedIndex());
+							
+							listItems.clear();
+		
+							for (int index = 0; index < list.getListSize(); index++)
+							{
+								TDElement element1 = list.getElement(index);
+								String ele = "<html>Description: " + element1.getDescription() + "<br/>"
+										+ "Due Date: " + element1.getDueDate() + "<br/>" 
+										+ "Priority: "+ element1.getPriority() + "<br/>" 
+										+ "Status: "+ element1.getStatus() + "<br/>" 
+										+ "Date Started: " + element1.getDateStarted() +"<br/>" 
+										+ "Date Finished: " + element1.getDateFinished() +  "<br/>" 
+										+ "--------------------------------------------------------</html>"; 
+								 listItems.add(ele);
+							}
+							jlist.updateUI();
+						}catch (NumberFormatException exception) {
+							JOptionPane pane = new JOptionPane();
+							pane.showMessageDialog(null, "Error: Priority is not an integer");
 						}
-						jlist.updateUI();
 					}
 				}
 				
