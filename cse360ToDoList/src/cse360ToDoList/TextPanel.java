@@ -20,6 +20,7 @@ public class TextPanel extends JPanel {
 	private Vector listItems;
 	
 	private JComboBox jdate;
+	private JComboBox jstat;
 	/**
 	 * constructor: create an area that display all of the to do 
 	 * 				list activities and related informations
@@ -141,6 +142,14 @@ public class TextPanel extends JPanel {
 				jmonth.addElement("December");
 				jdate.setModel(jmonth);
 				
+				//drop down menu for status bar
+				jstat = new JComboBox();
+				DefaultComboBoxModel jstatusOpt = new DefaultComboBoxModel();
+				jstatusOpt.addElement("Not Started");
+				jstatusOpt.addElement("In Progress");
+				jstatusOpt.addElement("Finished");
+				jstat.setModel(jstatusOpt);
+				
 				JPanel dueDate = new JPanel();
 				dueDate.setLayout(new FlowLayout());
 				JTextField dueDateMonth = new JTextField(7);
@@ -149,10 +158,11 @@ public class TextPanel extends JPanel {
 				
 				
 				
+				
 				dueDate.add(jdate);
 				dueDate.add(dueDateDay);
 				rightPanel.add(priorityField);
-				rightPanel.add(statusField);
+				rightPanel.add(jstat);
 				rightPanel.add(dateStartedField);
 				rightPanel.add(dateFinishedField);
 				
@@ -177,7 +187,7 @@ public class TextPanel extends JPanel {
 					String des = descriptionField.getText();
 					int priority = Integer.parseInt(priorityField.getText());
 					String date = jdate.getSelectedItem() + " " + dueDateDay.getText();
-					String status = statusField.getText();
+					String status = (String) jstat.getSelectedItem();
 					TDElement element = new TDElement(des, priority, date, status);
 					list.insert(element);
 					
