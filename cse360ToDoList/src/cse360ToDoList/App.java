@@ -13,7 +13,9 @@ public class App {
 		
 			public void run()
 			{
-				new MainFrame();
+				TDList globalList = new TDList();
+				new MainFrame(globalList);
+				
 				
 			}
 		});

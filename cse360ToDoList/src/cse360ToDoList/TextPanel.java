@@ -11,7 +11,7 @@ import javax.swing.event.*;
 import java.util.*;
 public class TextPanel extends JPanel {
 	
-	TDList list = new TDList();
+	private TDList list;
 	private JScrollPane scrollPane;
 	private JList jlist;
 	private JButton editButton;
@@ -28,7 +28,7 @@ public class TextPanel extends JPanel {
 	 * constructor: create an area that display all of the to do 
 	 * 				list activities and related informations
 	 */
-	public TextPanel() {
+	public TextPanel(TDList argumentList, JList argumentList2, Vector argumentVector) {
 		//create an array of string that contains all the info
 //		listItems = new String[list.getListSize()];
 //		for (int index = 0; index < list.getListSize(); index++)
@@ -42,22 +42,11 @@ public class TextPanel extends JPanel {
 //					+ "Date Finished: " + "<br/>" 
 //					+ "--------------------------------------------------------</html>"; 
 //		}
-		
-		listItems = new Vector();
-		for (int index = 0; index < listItems.size(); index++)
-		{
-			String ele = "<html>Description: " + "<br/>"
-					+ "Due Date: " + "<br/>" 
-					+ "Priority: " + "<br/>" 
-					+ "Status: " + "<br/>" 
-					+ "Date Started: " + "<br/>" 
-					+ "Date Finished: " + "<br/>" 
-					+ "--------------------------------------------------------</html>"; 
-			 listItems.set(index, ele);
-		}
+		list = argumentList;
+		jlist = argumentList2;
+		listItems = argumentVector;
+
 		//set up layout
-		jlist = new JList(listItems);
-		jlist.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 		JScrollPane scrollPane = new JScrollPane(jlist);
 		setLayout(new BorderLayout());

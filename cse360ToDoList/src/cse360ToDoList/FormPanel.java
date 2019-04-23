@@ -2,20 +2,25 @@ package cse360ToDoList;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.util.Vector;
 
 public class FormPanel extends JPanel implements ActionListener {
 	
 	private JButton sort;
 	private JLabel label;
 	private StringListener textListener;
-	
+	private TDList list;
+	private Vector listItems;
+	private JList jlist;
 	private JLabel sort1;
-	
 	private JComboBox sortCombo;
 	
-	public FormPanel()
+	public FormPanel(TDList argumentList, JList argumentList2, Vector argumentVector)
 	{
 		//set the sort by scroll down
+		list = argumentList;
+		jlist = argumentList2;
+		listItems = argumentVector;
 		setBorder(BorderFactory.createEtchedBorder());
 		sort = new JButton ("Sort:");
 		sort.addActionListener(this);
@@ -55,6 +60,38 @@ public class FormPanel extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+		if (sortCombo.getSelectedItem().equals("Priority"))
+		{
+			list.sortByPriority();
+			update();
+		}
+		if (sortCombo.getSelectedItem().equals("Description"))
+		{
+			list.sortByDescription();
+			update();
+		}
+		if (sortCombo.getSelectedItem().equals("Due Date"))
+		{
+			list.sortByDueDate();
+			update();
+		}
+	}
+	
+	private void update()
+	{
+		listItems.clear();
+		for (int index = 0; index < list.getListSize(); index++)
+		{
+			TDElement element1 = list.getElement(index);
+			String ele = "<html>Description: " + element1.getDescription() + "<br/>"
+					+ "Due Date: " + element1.getDueDate() + "<br/>" 
+					+ "Priority: "+ element1.getPriority() + "<br/>" 
+					+ "Status: "+ element1.getStatus() + "<br/>" 
+					+ "Date Started: " + "<br/>" 
+					+ "Date Finished: " + "<br/>" 
+					+ "--------------------------------------------------------</html>"; 
+			 listItems.add(ele);
+		}
+		jlist.updateUI();
 	}
 }
