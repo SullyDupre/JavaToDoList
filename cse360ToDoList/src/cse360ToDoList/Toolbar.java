@@ -6,6 +6,8 @@
 package cse360ToDoList;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Vector;
+
 import javax.swing.*;
 
 
@@ -13,12 +15,19 @@ public class Toolbar extends JPanel implements ActionListener{
 	private JButton saveButton;
 	private JButton restoreButton;
 	private JButton printButton;
+	private TDList list;
+	private Vector listItems;
+	private JList jlist;
 	
 	/** 
 	 * This constructor: create the general layout for the bottom tool bar 
 	 */
-	public Toolbar()
+	public Toolbar(TDList argumentList, JList argumentList2, Vector argumentVector)
 	{
+		list = argumentList;
+		jlist = argumentList2;
+		listItems = argumentVector;
+		
 		//create buttons
 		saveButton = new JButton ("SAVE");
 		restoreButton = new JButton ("RESTORE");
@@ -47,7 +56,9 @@ public class Toolbar extends JPanel implements ActionListener{
 		JButton clicked = (JButton)e.getSource();
 		//save button click
 		if (clicked == saveButton) {
-			
+			list.saveFile();
+			JOptionPane pane = new JOptionPane();
+			pane.showMessageDialog(null, "File had saved");
 		}
 		
 		//restore button click

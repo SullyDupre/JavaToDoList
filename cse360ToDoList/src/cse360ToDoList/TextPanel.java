@@ -29,19 +29,6 @@ public class TextPanel extends JPanel {
 	 * 				list activities and related informations
 	 */
 	public TextPanel(TDList argumentList, JList argumentList2, Vector argumentVector) {
-		//create an array of string that contains all the info
-//		listItems = new String[list.getListSize()];
-//		for (int index = 0; index < list.getListSize(); index++)
-//		{
-//			TDElement element = list.getElement(index);
-//			listItems[index] = "<html>Description: " + element.getDescription() + "<br/>"
-//					+ "Due Date: " + element.getDueDate() + "<br/>" 
-//					+ "Priority: "+ element.getPriority() + "<br/>" 
-//					+ "Status: "+ element.getStatus() + "<br/>" 
-//					+ "Date Started: " + "<br/>" 
-//					+ "Date Finished: " + "<br/>" 
-//					+ "--------------------------------------------------------</html>"; 
-//		}
 		list = argumentList;
 		jlist = argumentList2;
 		listItems = argumentVector;
@@ -66,9 +53,7 @@ public class TextPanel extends JPanel {
 		panel.add(deleteButton);
 		add(panel, BorderLayout.EAST);
 	}
-	
 
-	
 
 	/**
 	 * This method is used the index of JList to use in edit and delete method
@@ -152,10 +137,7 @@ public class TextPanel extends JPanel {
 				
 				//JTextField dueDateMonth = new JTextField(7);
 				JTextField dueDateDay = new JTextField(7);
-				
-				
-				
-				
+
 				//declare start date combo box
 				jmonthstartdate = new JComboBox();
 				JTextField dateStartedDay = new JTextField(7);
