@@ -19,6 +19,7 @@ public class TextPanel extends JPanel {
 	private JButton addButton;
 	private Vector listItems;
 	
+	private JComboBox jdate;
 	/**
 	 * constructor: create an area that display all of the to do 
 	 * 				list activities and related informations
@@ -123,13 +124,32 @@ public class TextPanel extends JPanel {
 				rightPanel.setLayout(new GridLayout(6,1));
 				rightPanel.add(descriptionField);
 
+				//drop down menu for the months
+				jdate = new JComboBox();
+				DefaultComboBoxModel jmonth = new DefaultComboBoxModel();
+				jmonth.addElement("January");
+				jmonth.addElement("February");
+				jmonth.addElement("March");
+				jmonth.addElement("April");
+				jmonth.addElement("May");
+				jmonth.addElement("June");
+				jmonth.addElement("July");
+				jmonth.addElement("August");
+				jmonth.addElement("September");
+				jmonth.addElement("October");
+				jmonth.addElement("November");
+				jmonth.addElement("December");
+				jdate.setModel(jmonth);
+				
 				JPanel dueDate = new JPanel();
 				dueDate.setLayout(new FlowLayout());
 				JTextField dueDateMonth = new JTextField(7);
 				JTextField dueDateDay = new JTextField(7);
 				rightPanel.add(dueDate);
 				
-				dueDate.add(dueDateMonth);
+				
+				
+				dueDate.add(jdate);
 				dueDate.add(dueDateDay);
 				rightPanel.add(priorityField);
 				rightPanel.add(statusField);
@@ -156,7 +176,7 @@ public class TextPanel extends JPanel {
 				if (result == JOptionPane.OK_OPTION) {
 					String des = descriptionField.getText();
 					int priority = Integer.parseInt(priorityField.getText());
-					String date = dueDateMonth.getText() + " " + dueDateDay.getText();
+					String date = jdate.getSelectedItem() + " " + dueDateDay.getText();
 					String status = statusField.getText();
 					TDElement element = new TDElement(des, priority, date, status);
 					list.insert(element);
