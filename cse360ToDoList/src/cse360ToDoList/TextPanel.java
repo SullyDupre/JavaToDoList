@@ -119,20 +119,49 @@ public class TextPanel extends JPanel {
 
 				//drop down menu for the months
 				jmonthduedate = new JComboBox();
-				DefaultComboBoxModel jmonth = new DefaultComboBoxModel();
-				jmonth.addElement("January");
-				jmonth.addElement("February");
-				jmonth.addElement("March");
-				jmonth.addElement("April");
-				jmonth.addElement("May");
-				jmonth.addElement("June");
-				jmonth.addElement("July");
-				jmonth.addElement("August");
-				jmonth.addElement("September");
-				jmonth.addElement("October");
-				jmonth.addElement("November");
-				jmonth.addElement("December");
-				jmonthduedate.setModel(jmonth);
+				DefaultComboBoxModel jmonthdue = new DefaultComboBoxModel();
+				jmonthdue.addElement("January");
+				jmonthdue.addElement("February");
+				jmonthdue.addElement("March");
+				jmonthdue.addElement("April");
+				jmonthdue.addElement("May");
+				jmonthdue.addElement("June");
+				jmonthdue.addElement("July");
+				jmonthdue.addElement("August");
+				jmonthdue.addElement("September");
+				jmonthdue.addElement("October");
+				jmonthdue.addElement("November");
+				jmonthdue.addElement("December");
+				jmonthduedate.setModel(jmonthdue);
+				
+				
+				DefaultComboBoxModel jmonthstart = new DefaultComboBoxModel();
+				jmonthstart.addElement("January");
+				jmonthstart.addElement("February");
+				jmonthstart.addElement("March");
+				jmonthstart.addElement("April");
+				jmonthstart.addElement("May");
+				jmonthstart.addElement("June");
+				jmonthstart.addElement("July");
+				jmonthstart.addElement("August");
+				jmonthstart.addElement("September");
+				jmonthstart.addElement("October");
+				jmonthstart.addElement("November");
+				jmonthstart.addElement("December");
+				
+				DefaultComboBoxModel jmonthend = new DefaultComboBoxModel();
+				jmonthend.addElement("January");
+				jmonthend.addElement("February");
+				jmonthend.addElement("March");
+				jmonthend.addElement("April");
+				jmonthend.addElement("May");
+				jmonthend.addElement("June");
+				jmonthend.addElement("July");
+				jmonthend.addElement("August");
+				jmonthend.addElement("September");
+				jmonthend.addElement("October");
+				jmonthend.addElement("November");
+				jmonthend.addElement("December");
 				
 				//drop down menu for status bar
 				jstat = new JComboBox();
@@ -159,12 +188,12 @@ public class TextPanel extends JPanel {
 				//declare start date combo box
 				jmonthstartdate = new JComboBox();
 				JTextField dateStartedDay = new JTextField(7);
-				jmonthstartdate.setModel(jmonth);
+				jmonthstartdate.setModel(jmonthstart);
 				
 				//declare finish date combo box
 				jmonthfinishdate = new JComboBox();	
 				JTextField dateFinishedDay = new JTextField(7);
-				jmonthfinishdate.setModel(jmonth);
+				jmonthfinishdate.setModel(jmonthend);
 				
 				//add due date
 				rightPanel.add(dueDate);
