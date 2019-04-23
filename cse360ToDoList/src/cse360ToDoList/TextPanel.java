@@ -145,11 +145,11 @@ public class TextPanel extends JPanel {
 					}
 					jlist.updateUI();
 				}
-				
 			}
 			//when edit button is click
 			if (clicked == editButton)
 			{
+				
 			}
 			//when delete button is click
 			if (clicked == deleteButton)
