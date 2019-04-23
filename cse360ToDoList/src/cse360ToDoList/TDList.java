@@ -1,4 +1,9 @@
 package cse360ToDoList;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.nio.file.StandardOpenOption.*;
 import java.util.*;
 
 public class TDList {
@@ -118,6 +123,33 @@ public class TDList {
 	}
 	
 	
+	public void saveFile(){																			//save to do list to text file called saveFile.txt
+		String seperator = System.getProperty("line.separator");
+		
+		String title = "To Do List" + seperator + seperator + seperator;
+		try {
+			Files.write(Paths.get("./saveFile.txt"), title.getBytes());
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		for(int entry = 0; entry < getListSize(); entry++){
+			TDElement element = toDoList.get(entry);
+			
+			String text = "Description: " + element.getDescription() + "   " + "Priority: " + element.getPriority() + "   " + 
+			"Due Date: " + element.getDueDate() + "   " + "Status: " + element.getStatus() + "   " + "Date Started: " + element.getDateStarted() + "   " + 
+			"Date Finished: " + element.getDateFinished() + "   " + seperator + seperator;
+			
+			
+			try {
+				Files.write(Paths.get("./saveFile.txt"), text.getBytes(), StandardOpenOption.APPEND);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}	
+	}
 }
 
 
