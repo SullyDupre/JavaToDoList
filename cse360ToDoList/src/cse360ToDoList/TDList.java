@@ -136,7 +136,7 @@ public class TDList {
 	/**
 	 * This function sorts the list by the currently selected method
 	 */
-	private void sortByCurrentMethod(){															//sorts the list by the currently selected method
+	private void sortByCurrentMethod(){															
 		if(currentSortMethod == 0){
 			sortByPriority();
 		}
@@ -148,22 +148,34 @@ public class TDList {
 		}
 	}
 	
-	public void sortByDescription(){														//sort list by description, lexicographically 
+	/**
+	 * Sort the list by description, lexicographically 
+	 */
+	public void sortByDescription(){														
 		Collections.sort(toDoList, new DescriptionComparator());
 		currentSortMethod = 1;
 	}
 	
-	public void sortByPriority(){														//sort list by priority, numerically
+	/**
+	 * This function sorts the list by priority, numerically
+	 */
+	public void sortByPriority(){														
 		Collections.sort(toDoList, new PriorityComparator());
 		currentSortMethod = 0;
 	}
 	
+	/**
+	 * This function sorts the list by due date.
+	 */
 	public void sortByDueDate(){														//sort list by due date
 		Collections.sort(toDoList, new DateComparator());
 		currentSortMethod = 2;
 	}
 	
-	
+	/**
+	 * This function saves to a text file
+	 * @return savefile.txt
+	 */
 	public void saveFile(){																			//save to do list to text file called saveFile.txt
 		String seperator = System.getProperty("line.separator");
 		
@@ -192,12 +204,12 @@ public class TDList {
 		}	
 	}
 }
-//can I merge with master?
 
 
 
-//comparator classes for sorting purposes
-
+/**
+ * These classes below are comparator classes that are used for the sorting purposes.
+ */
 class DescriptionComparator implements Comparator<TDElement> {
 	@Override
 	public int compare(TDElement first, TDElement second){
