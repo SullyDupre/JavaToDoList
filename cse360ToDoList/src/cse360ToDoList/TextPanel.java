@@ -11,7 +11,7 @@ import javax.swing.event.*;
 import java.util.*;
 public class TextPanel extends JPanel {
 	
-	TDList list = new TDList();
+	private TDList list;
 	private JScrollPane scrollPane;
 	private JList jlist;
 	private JButton editButton;
@@ -19,11 +19,16 @@ public class TextPanel extends JPanel {
 	private JButton addButton;
 	private Vector listItems;
 	
+	private JComboBox jmonthduedate;
+	private JComboBox jmonthstartdate;
+	private JComboBox jmonthfinishdate;
+	
+	private JComboBox jstat;
 	/**
 	 * constructor: create an area that display all of the to do 
 	 * 				list activities and related informations
 	 */
-	public TextPanel() {
+	public TextPanel(TDList argumentList, JList argumentList2, Vector argumentVector) {
 		//create an array of string that contains all the info
 //		listItems = new String[list.getListSize()];
 //		for (int index = 0; index < list.getListSize(); index++)
@@ -37,22 +42,11 @@ public class TextPanel extends JPanel {
 //					+ "Date Finished: " + "<br/>" 
 //					+ "--------------------------------------------------------</html>"; 
 //		}
-		
-		listItems = new Vector();
-		for (int index = 0; index < listItems.size(); index++)
-		{
-			String ele = "<html>Description: " + "<br/>"
-					+ "Due Date: " + "<br/>" 
-					+ "Priority: " + "<br/>" 
-					+ "Status: " + "<br/>" 
-					+ "Date Started: " + "<br/>" 
-					+ "Date Finished: " + "<br/>" 
-					+ "--------------------------------------------------------</html>"; 
-			 listItems.set(index, ele);
-		}
+		list = argumentList;
+		jlist = argumentList2;
+		listItems = argumentVector;
+
 		//set up layout
-		jlist = new JList(listItems);
-		jlist.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 		JScrollPane scrollPane = new JScrollPane(jlist);
 		setLayout(new BorderLayout());
@@ -123,18 +117,74 @@ public class TextPanel extends JPanel {
 				rightPanel.setLayout(new GridLayout(6,1));
 				rightPanel.add(descriptionField);
 
-				JPanel dueDate = new JPanel();
-				dueDate.setLayout(new FlowLayout());
-				JTextField dueDateMonth = new JTextField(7);
-				JTextField dueDateDay = new JTextField(7);
-				rightPanel.add(dueDate);
+				//drop down menu for the months
+				jmonthduedate = new JComboBox();
+				DefaultComboBoxModel jmonth = new DefaultComboBoxModel();
+				jmonth.addElement("January");
+				jmonth.addElement("February");
+				jmonth.addElement("March");
+				jmonth.addElement("April");
+				jmonth.addElement("May");
+				jmonth.addElement("June");
+				jmonth.addElement("July");
+				jmonth.addElement("August");
+				jmonth.addElement("September");
+				jmonth.addElement("October");
+				jmonth.addElement("November");
+				jmonth.addElement("December");
+				jmonthduedate.setModel(jmonth);
 				
-				dueDate.add(dueDateMonth);
+				//drop down menu for status bar
+				jstat = new JComboBox();
+				DefaultComboBoxModel jstatusOpt = new DefaultComboBoxModel();
+				jstatusOpt.addElement("Not Started");
+				jstatusOpt.addElement("In Progress");
+				jstatusOpt.addElement("Finished");
+				jstat.setModel(jstatusOpt);
+				
+				JPanel dueDate = new JPanel();
+				JPanel startDate = new JPanel();
+				JPanel finishDate = new JPanel();
+				
+				dueDate.setLayout(new FlowLayout());
+				startDate.setLayout(new FlowLayout());
+				finishDate.setLayout(new FlowLayout());
+				
+				//JTextField dueDateMonth = new JTextField(7);
+				JTextField dueDateDay = new JTextField(7);
+				
+				
+				
+				
+				//declare start date combo box
+				jmonthstartdate = new JComboBox();
+				JTextField dateStartedDay = new JTextField(7);
+				jmonthstartdate.setModel(jmonth);
+				
+				//declare finish date combo box
+				jmonthfinishdate = new JComboBox();	
+				JTextField dateFinishedDay = new JTextField(7);
+				jmonthfinishdate.setModel(jmonth);
+				
+				//add due date
+				rightPanel.add(dueDate);
+				dueDate.add(jmonthduedate);
 				dueDate.add(dueDateDay);
+				
+				//add status
 				rightPanel.add(priorityField);
-				rightPanel.add(statusField);
-				rightPanel.add(dateStartedField);
-				rightPanel.add(dateFinishedField);
+				rightPanel.add(jstat);
+				
+				//add start date
+				rightPanel.add(startDate);
+				startDate.add(jmonthstartdate);
+				startDate.add(dateStartedDay);
+				
+				//add finish date
+				rightPanel.add(finishDate);
+				finishDate.add(jmonthfinishdate);
+				finishDate.add(dateFinishedDay);
+				
 				
 				//top panel
 				JPanel topPanel = new JPanel();
@@ -156,9 +206,12 @@ public class TextPanel extends JPanel {
 				if (result == JOptionPane.OK_OPTION) {
 					String des = descriptionField.getText();
 					int priority = Integer.parseInt(priorityField.getText());
-					String date = dueDateMonth.getText() + " " + dueDateDay.getText();
-					String status = statusField.getText();
-					TDElement element = new TDElement(des, priority, date, status);
+					String date = jmonthduedate.getSelectedItem() + " " + dueDateDay.getText();
+					String status = (String) jstat.getSelectedItem();
+					String StartDate = jmonthstartdate.getSelectedItem() + " " + dateStartedDay.getText();
+					String FinishDate = jmonthfinishdate.getSelectedItem() + " " + dateFinishedDay.getText();
+					
+					TDElement element = new TDElement(des, priority, date, status, StartDate, FinishDate);
 					list.insert(element);
 					
 					listItems.clear();
@@ -170,8 +223,8 @@ public class TextPanel extends JPanel {
 								+ "Due Date: " + element1.getDueDate() + "<br/>" 
 								+ "Priority: "+ element1.getPriority() + "<br/>" 
 								+ "Status: "+ element1.getStatus() + "<br/>" 
-								+ "Date Started: " + "<br/>" 
-								+ "Date Finished: " + "<br/>" 
+								+ "Date Started: " + element1.getDateStarted() +"<br/>" 
+								+ "Date Finished: " + element1.getDateFinished() +  "<br/>" 
 								+ "--------------------------------------------------------</html>"; 
 						 listItems.add(ele);
 					}
