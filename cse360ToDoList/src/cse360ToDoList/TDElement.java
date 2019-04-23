@@ -1,43 +1,65 @@
 package cse360ToDoList;
 
 
-import java.util.Date;
-
 public class TDElement {
 
 	private String description;
 	private int priority;
-	private Date dueDate;
+	private String dueDate;
 
 	private int status;				//status 0 = not started, 1 = in progress, 2 = finished
 
-	private Date dateStarted;
-	private Date dateFinished;
+	private String dateStarted;
+	private String dateFinished;
 
 	public TDElement() {
 
 	}
 
-	public TDElement(String descrip, int prio, Date due, int stat){
+	public TDElement(String descrip, int prio, String due, String stat){
 		description = descrip;
 		priority = prio;
 		dueDate = due;
-		status = stat;
+		if (stat == "Not Started"){
+			status = 0;
+		}
+		else if (stat == "In Progress"){
+			status = 1;
+		}
+		else {
+			status = 2;
+		}
 	}
 
-	public TDElement(String descrip, int prio, Date due, int stat, Date start){
+	public TDElement(String descrip, int prio, String due, String stat, String start){
 		description = descrip;
 		priority = prio;
 		dueDate = due;
-		status = stat;
+		if (stat == "Not Started"){
+			status = 0;
+		}
+		else if (stat == "In Progress"){
+			status = 1;
+		}
+		else {
+			status = 2;
+		}
 		dateStarted = start;
 	}
 
-	public TDElement(String descrip, int prio, Date due, int stat, Date start, Date finish){
+	public TDElement(String descrip, int prio, String due, String stat, String start, String finish){
 		description = descrip;
 		priority = prio;
 		dueDate = due;
-		status = stat;
+		if (stat == "Not Started"){
+			status = 0;
+		}
+		else if (stat == "In Progress"){
+			status = 1;
+		}
+		else {
+			status = 2;
+		}
 		dateStarted = start;
 		dateFinished = finish;
 	}
@@ -51,7 +73,7 @@ public class TDElement {
 		return priority;
 	}
 
-	public Date getDueDate(){
+	public String getDueDate(){
 		return dueDate;
 	}
 
@@ -67,11 +89,11 @@ public class TDElement {
 		}
 	}
 
-	public Date getDateStarted(){
+	public String getDateStarted(){
 		return dateStarted;
 	}
 
-	public Date getDateFinished(){
+	public String getDateFinished(){
 		return dateFinished;
 	}
 
@@ -84,7 +106,7 @@ public class TDElement {
 		priority = newPrior;
 	}
 
-	public void setDueDate(Date newDate){
+	public void setDueDate(String newDate){
 		dueDate = newDate;
 	}
 
@@ -104,11 +126,11 @@ public class TDElement {
 		status = newStat;
 	}
 
-	public void setDateStarted(Date startDate){
+	public void setDateStarted(String startDate){
 		dateStarted = startDate;
 	}
 
-	public void setDateFinished(Date finishDate){
+	public void setDateFinished(String finishDate){
 		dateFinished = finishDate;
 	}
 
