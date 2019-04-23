@@ -87,8 +87,8 @@ public class FormPanel extends JPanel implements ActionListener {
 					+ "Due Date: " + element1.getDueDate() + "<br/>" 
 					+ "Priority: "+ element1.getPriority() + "<br/>" 
 					+ "Status: "+ element1.getStatus() + "<br/>" 
-					+ "Date Started: " + "<br/>" 
-					+ "Date Finished: " + "<br/>" 
+					+ "Date Started: " + element1.getDateStarted() +"<br/>" 
+					+ "Date Finished: " + element1.getDateFinished() +  "<br/>" 
 					+ "--------------------------------------------------------</html>"; 
 			 listItems.add(ele);
 		}
