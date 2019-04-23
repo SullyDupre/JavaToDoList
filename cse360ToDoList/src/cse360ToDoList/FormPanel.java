@@ -6,15 +6,50 @@ import java.util.Vector;
 
 public class FormPanel extends JPanel implements ActionListener {
 	
+	/**
+	 * Sort button initialized
+	 */
 	private JButton sort;
+	
+	/**
+	 * Label initialized
+	 */
 	private JLabel label;
+	
+	/**
+	 * Listener for input initialized
+	 */
 	private StringListener textListener;
+	
+	/**
+	 * List  initialized
+	 */
 	private TDList list;
+	
+	/**
+	 * List items initialized
+	 */
 	private Vector listItems;
+	
+	/**
+	 * Storing the items in the list also initialized
+	 */
 	private JList jlist;
+	
+	/**
+	 * Sort labels initialized
+	 */
 	private JLabel sort1;
+	
+	/**
+	 * Sorting by which way initialized
+	 */
 	private JComboBox sortCombo;
 	
+	
+	/**
+	 * This function forms the panel in the GUI
+	 */
 	public FormPanel(TDList argumentList, JList argumentList2, Vector argumentVector)
 	{
 		//set the sort by scroll down
@@ -57,6 +92,9 @@ public class FormPanel extends JPanel implements ActionListener {
 		
 	}
 
+	/**
+	 * This is the update function that will update the gui when an action is finished
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -77,6 +115,9 @@ public class FormPanel extends JPanel implements ActionListener {
 		}
 	}
 	
+	/**
+	 * UPdate function in the gui
+	 */
 	private void update()
 	{
 		listItems.clear();
