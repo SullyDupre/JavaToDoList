@@ -60,7 +60,7 @@ public class TextPanel extends JPanel {
 		
 		editButton = new JButton("EDIT");
 		deleteButton = new JButton("DELETE");
-		addButton = new JButton ("SAVE");
+		addButton = new JButton ("ADD");
 		editButton.addActionListener(new ListListener());
 		deleteButton.addActionListener(new ListListener());
 		addButton.addActionListener(new ListListener());
@@ -96,14 +96,13 @@ public class TextPanel extends JPanel {
 				addTitle.setFont(new Font("Time New Roman", Font.BOLD, 20));
 				JLabel descriptionLabel = new JLabel("Description");
 				JLabel dueDateLabel = new JLabel("Due Date");
-				JLabel priorityLabel = new JLabel("Priority");
+				JLabel priorityLabel = new JLabel("Priority(number)");
 				JLabel statusLabel = new JLabel("Status");
 				JLabel dateStartedLabel = new JLabel("Date Started");
 				JLabel dateFinishedLabel = new JLabel("Date Finished");
 				
 				//text fields with 20 characters in each each
 				JTextField descriptionField = new JTextField(20);
-				JTextField dueDateField = new JTextField(20);
 				JTextField priorityField = new JTextField(20);
 				JTextField statusField = new JTextField(20);
 				JTextField dateStartedField = new JTextField(20);
@@ -123,7 +122,15 @@ public class TextPanel extends JPanel {
 				JPanel rightPanel = new JPanel();
 				rightPanel.setLayout(new GridLayout(6,1));
 				rightPanel.add(descriptionField);
-				rightPanel.add(dueDateField);
+
+				JPanel dueDate = new JPanel();
+				dueDate.setLayout(new FlowLayout());
+				JTextField dueDateMonth = new JTextField(7);
+				JTextField dueDateDay = new JTextField(7);
+				rightPanel.add(dueDate);
+				
+				dueDate.add(dueDateMonth);
+				dueDate.add(dueDateDay);
 				rightPanel.add(priorityField);
 				rightPanel.add(statusField);
 				rightPanel.add(dateStartedField);
@@ -149,7 +156,7 @@ public class TextPanel extends JPanel {
 				if (result == JOptionPane.OK_OPTION) {
 					String des = descriptionField.getText();
 					int priority = Integer.parseInt(priorityField.getText());
-					String date = dueDateField.getText();
+					String date = dueDateMonth.getText() + " " + dueDateDay.getText();
 					String status = statusField.getText();
 					TDElement element = new TDElement(des, priority, date, status);
 					list.insert(element);
