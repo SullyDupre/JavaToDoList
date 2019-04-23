@@ -161,6 +161,7 @@ public class TextPanel extends JPanel {
 					TDElement element = new TDElement(des, priority, date, status);
 					list.insert(element);
 					
+					listItems.clear();
 //					//temp
 					for (int index = 0; index < list.getListSize(); index++)
 					{
@@ -173,6 +174,7 @@ public class TextPanel extends JPanel {
 								+ "Date Finished: " + "<br/>" 
 								+ "--------------------------------------------------------</html>"; 
 						 listItems.add(ele);
+						 System.out.print(list.getListSize());
 					}
 					jlist.updateUI();
 				}
