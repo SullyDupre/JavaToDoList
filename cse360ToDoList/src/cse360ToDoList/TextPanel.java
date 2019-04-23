@@ -25,7 +25,31 @@ public class TextPanel extends JPanel {
 	 */
 	public TextPanel() {
 		//create an array of string that contains all the info
-
+//		listItems = new String[list.getListSize()];
+//		for (int index = 0; index < list.getListSize(); index++)
+//		{
+//			TDElement element = list.getElement(index);
+//			listItems[index] = "<html>Description: " + element.getDescription() + "<br/>"
+//					+ "Due Date: " + element.getDueDate() + "<br/>" 
+//					+ "Priority: "+ element.getPriority() + "<br/>" 
+//					+ "Status: "+ element.getStatus() + "<br/>" 
+//					+ "Date Started: " + "<br/>" 
+//					+ "Date Finished: " + "<br/>" 
+//					+ "--------------------------------------------------------</html>"; 
+//		}
+		
+		listItems = new Vector();
+		for (int index = 0; index < listItems.size(); index++)
+		{
+			String ele = "<html>Description: " + "<br/>"
+					+ "Due Date: " + "<br/>" 
+					+ "Priority: " + "<br/>" 
+					+ "Status: " + "<br/>" 
+					+ "Date Started: " + "<br/>" 
+					+ "Date Finished: " + "<br/>" 
+					+ "--------------------------------------------------------</html>"; 
+			 listItems.set(index, ele);
+		}
 		//set up layout
 		jlist = new JList(listItems);
 		jlist.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -127,7 +151,7 @@ public class TextPanel extends JPanel {
 					int priority = Integer.parseInt(priorityField.getText());
 					String date = dueDateField.getText();
 					String status = statusField.getText();
-					TDElement element = new TDElement(des, priority, new Date(), 1);
+					TDElement element = new TDElement(des, priority, date, status);
 					list.insert(element);
 					
 //					//temp
@@ -145,6 +169,7 @@ public class TextPanel extends JPanel {
 					}
 					jlist.updateUI();
 				}
+				
 			}
 			//when edit button is click
 			if (clicked == editButton)
