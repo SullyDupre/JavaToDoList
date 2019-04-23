@@ -17,16 +17,16 @@ public class FormPanel extends JPanel implements ActionListener {
 	{
 		//set the sort by scroll down
 		setBorder(BorderFactory.createEtchedBorder());
-		sort = new JButton ("Sort By:");
+		sort = new JButton ("Sort:");
 		sort.addActionListener(this);
 		
 		sort1 = new JLabel ("Sort by:"); 
 		
 		sortCombo = new JComboBox ();
 		DefaultComboBoxModel sortModel = new DefaultComboBoxModel();
+		sortModel.addElement("Priority");
 		sortModel.addElement("Description");
 		sortModel.addElement("Due Date");
-		sortModel.addElement("Priority");
 		sortCombo.setModel(sortModel);
 		
 		

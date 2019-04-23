@@ -14,10 +14,11 @@ public class MainFrame extends JFrame{
 	//private JButton btn;
 	private Toolbar toolbar;
 	private FormPanel formPanel;
+	public TDList list;
 	public MainFrame()
 	{
-		super("CSE360Testing Main Frame");
-		
+		super("CSE360 To Do List");
+		list = new TDList();
 		setLayout(new BorderLayout());
 		
 		toolbar = new Toolbar();

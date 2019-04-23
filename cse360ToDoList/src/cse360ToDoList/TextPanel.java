@@ -174,7 +174,6 @@ public class TextPanel extends JPanel {
 								+ "Date Finished: " + "<br/>" 
 								+ "--------------------------------------------------------</html>"; 
 						 listItems.add(ele);
-						 System.out.print(list.getListSize());
 					}
 					jlist.updateUI();
 				}
@@ -187,6 +186,23 @@ public class TextPanel extends JPanel {
 			//when delete button is click
 			if (clicked == deleteButton)
 			{
+				list.remove(jlist.getSelectedIndex());
+				if(!jlist.isSelectionEmpty())
+					listItems.clear();
+//				//temp
+				for (int index = 0; index < list.getListSize(); index++)
+				{
+					TDElement element1 = list.getElement(index);
+					String ele = "<html>Description: " + element1.getDescription() + "<br/>"
+							+ "Due Date: " + element1.getDueDate() + "<br/>" 
+							+ "Priority: "+ element1.getPriority() + "<br/>" 
+							+ "Status: "+ element1.getStatus() + "<br/>" 
+							+ "Date Started: " + "<br/>" 
+							+ "Date Finished: " + "<br/>" 
+							+ "--------------------------------------------------------</html>"; 
+					 listItems.add(ele);
+				}
+				jlist.updateUI();
 			}
 		}
 	}
